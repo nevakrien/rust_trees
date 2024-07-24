@@ -182,8 +182,6 @@ impl <T> Tree<T>{
                 let node_ptr: *mut Node<T> = &mut **boxed_node;
                 if node_ptr == comp {
                     // no need to set the parent_pointer
-                    // since it would be set when we move it to a node
-                    // and in Tree we are not assuming root has a valid pointer
                     return child.take();
                 }
             }
