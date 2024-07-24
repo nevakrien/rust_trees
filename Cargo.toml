@@ -1,0 +1,15 @@
+[package]
+name = "trees"
+
+[dependencies]
+# Add your dependencies here
+
+# Example:
+# serde = { version = "1.0", features = ["derive"] }
+# rand = "0.8"
+
+[dev-dependencies]
+# Add your development dependencies here
+
+# Example:
+# criterion = "0.3"
