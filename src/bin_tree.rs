@@ -24,8 +24,9 @@ impl <T> Node<T>{
 	}
 
 	pub fn pop_child(&mut self, idx :usize) -> Option<Box<Node<T>>>{
-			let mut ans = self.children[idx].take()?;
-			ans.parent = std::ptr::null_mut();
+			let ans = self.children[idx].take()?;
+			//ans.parent = std::ptr::null_mut();
+			//no need because Tree does not assume parent makes sense when its given externally
 			return Some(ans);		
 	}
 
@@ -143,18 +144,16 @@ impl <T> Tree<T>{
 		let _root = self.root.as_deref_mut()?;
 		
 		//we now know that handle is not null
-		//and we know it has a parent
 		
 		let node = unsafe{&mut *self.handle};
 		self.handle = node.get_child(idx)?;
 		return Some(self);
 	}
 
-	pub fn set_child(&mut self,idx :usize,mut val:Option<Box<Node<T>>>) -> Option<&mut Tree<T>> {
+	pub fn set_child(&mut self,idx :usize, val:Option<Box<Node<T>>>) -> Option<&mut Tree<T>> {
 		let _root = self.root.as_deref_mut()?;
 		
 		//we now know that handle is not null
-		//and we know it has a parent
 		
 		let node = unsafe{&mut *self.handle};
 		node.set_child(idx,val);
